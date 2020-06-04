@@ -23,7 +23,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "{{ grafana_influxdb_datasource }}",
+      "datasource": "{{ grafana_influxdb_datasource_name }}",
       "decimals": null,
       "fill": 1,
       "fillGradient": 0,
@@ -165,7 +165,7 @@
           "text": "prod",
           "value": "prod"
         },
-        "datasource": "{{ grafana_influxdb_datasource }}",
+        "datasource": "{{ grafana_influxdb_datasource_name }}",
         "definition": "show tag values with key=\"environment\"",
         "hide": 0,
         "includeAll": false,
