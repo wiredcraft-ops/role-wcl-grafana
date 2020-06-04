@@ -1,4 +1,4 @@
-## Ansible-Telegraf
+## Ansible-Grafana
 > an ansible role to install, configure and manage Grafana
 
 ### Installation
