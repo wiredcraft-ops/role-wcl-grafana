@@ -1,0 +1,13 @@
+---
+- name: Create influxdb datasource
+  grafana_datasource:
+    name: "{{ grafana_influxdb_datasource_name }}"
+    grafana_url: "{{ grafana_server }}"
+    grafana_api_key: "{{ grafana_dashboard_api_key }}"
+    org_id: "{{ grafana_org_id }}"
+    ds_type: "influxdb"
+    ds_url: "{{ grafana_influxdb_url }}"
+    database: "{{ grafana_influxdb_database }}"
+    user: "{{ grafana_influxdb_username }}"
+    password: "{{ grafana_influxdb_password }}"
+

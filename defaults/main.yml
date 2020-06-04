@@ -1,0 +1,27 @@
+---
+grafana_server: ""
+grafana_dashboard_api_key: ""
+grafana_config_dir: ""
+grafana_org_id: ""
+
+# Datasource
+## InfluxDB datasource
+grafana_influxdb_datasource_name: "influxdb"
+grafana_influxdb_url: ""
+grafana_influxdb_database: ""
+grafana_influxdb_username: ""
+grafana_influxdb_password: ""
+
+# Notification Channel
+grafana_notification_channel: ""
+## Slack
+grafana_notification_channel_slack_url: ""
+grafana_notification_channel_slack_recipient: ""
+grafana_notification_channel_slack_mention: ""
+grafana_notification_channel_slack_token: ""
+
+# Dashboards
+grafana_dashboards:
+  - servers.json
+  - servers-alert.json
+  - web.json

@@ -1,0 +1,31 @@
+---
+- name: Check if notification channel exist
+  uri:
+    url: "{{ grafana_server }}/api/alert-notifications/uid/{{ grafana_notification_channel }}"
+    headers:
+      Authorization: "Bearer {{ grafana_dashboard_api_key }}"
+    status_code:
+      - 200
+      - 404
+  register: notificationChannel
+
+- name: Create notification channel
+  uri:
+    url: "{{ grafana_server }}/api/alert-notifications"
+    headers:
+      Authorization: "Bearer {{ grafana_dashboard_api_key }}"
+    method: POST
+    body_format: json
+    body:
+      uid: "{{ grafana_notification_channel }}"
+      name: "{{ grafana_notification_channel }}"
+      type: "slack"
+      isDefault: true
+      settings:
+        url: "{{ grafana_notification_channel_slack_url }}"
+        recipient: "{{ grafana_notification_channel_slack_recipient }}"
+        mention: "@{{ grafana_notification_channel_slack_mention }}"
+        mentionGroups: "{{ grafana_notification_channel_slack_mention }}"
+        token: "{{ grafana_notification_channel_slack_token }}"
+  when: notificationChannel.status == 404
+

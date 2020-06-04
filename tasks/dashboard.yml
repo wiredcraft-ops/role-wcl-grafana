@@ -1,0 +1,36 @@
+---
+
+- name: Create grafana_config_dir
+  file:
+    name: "{{ grafana_config_dir }}"
+    state: directory
+  when: grafana_config_dir != ""
+
+- name: Create temp folder for config file
+  tempfile:
+    state: directory
+    suffix: grafana_config
+  when: grafana_config_dir == ""
+  register: temp_grafana_config_dir
+
+- name: Set grafana_config_dir
+  set_fact:
+      grafana_config_dir: "{{ temp_grafana_config_dir.path }}"
+  when: grafana_config_dir == ""
+
+- name: Generate json file for basic server dashboard
+  template:
+    src: "grafana/{{ item }}"
+    dest: "{{ grafana_config_dir }}/{{ item }}"
+  with_items: "{{ grafana_dashboards }}"
+
+- name: Import dashboard
+  grafana_dashboard:
+    grafana_url: "{{ grafana_server }}"
+    grafana_api_key: "{{ grafana_dashboard_api_key }}"
+    state: present
+    message: Updated by ansible
+    overwrite: yes
+    path: "{{ grafana_config_dir }}/{{ item }}"
+  with_items: "{{ grafana_dashboards }}"
+
