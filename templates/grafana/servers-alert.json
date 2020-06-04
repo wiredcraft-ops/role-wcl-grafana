@@ -18,7 +18,7 @@
   "id": "{{ grafana_servers_alert_dashboard_id | default(omit) }}",
   "links": [],
   "panels": [
-   {% for env, env_delta in envs.items()%}
+   {% for env, env_delta in grafana_envs.items()%}
     {
       "alert": {
         "alertRuleTags": {},

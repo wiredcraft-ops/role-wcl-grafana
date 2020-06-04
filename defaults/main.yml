@@ -3,6 +3,9 @@ grafana_server: ""
 grafana_dashboard_api_key: ""
 grafana_config_dir: ""
 grafana_org_id: ""
+grafana_envs:
+    staging: 1
+    production: 2
 
 # Datasource
 ## InfluxDB datasource
