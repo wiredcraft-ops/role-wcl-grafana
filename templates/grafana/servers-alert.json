@@ -355,7 +355,7 @@
             [
               {
                 "params": [
-                  "available_percent"
+                  "used_percent"
                 ],
                 "type": "field"
               },
@@ -365,7 +365,7 @@
               },
               {
                 "params": [
-                  "available"
+                  "used"
                 ],
                 "type": "alias"
               }
