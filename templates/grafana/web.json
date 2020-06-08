@@ -151,6 +151,93 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "datasource": "{{ grafana_influxdb_datasource_name }}",
+      "type": "table",
+      "title": "SSL Expire",
+      "gridPos": {
+        "x": 0,
+        "y": 7,
+        "w": 8,
+        "h": 10
+      },
+      "id": 3,
+      "targets": [
+        {
+          "refId": "A",
+          "policy": "default",
+          "resultFormat": "time_series",
+          "orderByTime": "ASC",
+          "tags": [],
+          "groupBy": [
+            {
+              "type": "time",
+              "params": [
+                "$__interval"
+              ]
+            },
+            {
+              "type": "tag",
+              "params": [
+                "host"
+              ]
+            }
+          ],
+          "select": [
+            [
+              {
+                "type": "field",
+                "params": [
+                  "expiry"
+                ]
+              },
+              {
+                "type": "mean",
+                "params": []
+              }
+            ]
+          ],
+          "measurement": "x509_cert",
+          "alias": "[[tag_host]]"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "options": {},
+      "styles": [
+        {
+          "unit": "s",
+          "type": "number",
+          "alias": "Expire",
+          "decimals": 1,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "colorMode": "cell",
+          "pattern": "Current",
+          "thresholds": [
+            "0",
+            "691200"
+          ]
+        }
+      ],
+      "transform": "timeseries_aggregations",
+      "pageSize": null,
+      "showHeader": true,
+      "columns": [
+        {
+          "text": "Current",
+          "value": "current"
+        }
+      ],
+      "fontSize": "100%",
+      "sort": {
+        "col": 0,
+        "desc": true
+      }
     }
   ],
   "schemaVersion": 21,
